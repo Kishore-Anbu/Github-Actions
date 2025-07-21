@@ -1,11 +1,8 @@
 name: Manual Trigger
 
 on:
-  workflow_dispatch:
-    inputs:
-      username:
-        description: 'Your name'
-        required: true
+  repository_dispatch :
+    types: [ trigger-manual ]
 
 jobs:
   greet:
