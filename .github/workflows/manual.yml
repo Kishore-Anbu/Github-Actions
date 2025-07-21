@@ -6,7 +6,7 @@ on:
       name:
         description: 'Name'
         type: string
-        default: 'test'
+        required: true
 
 jobs:
   manual: 
