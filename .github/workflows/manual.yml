@@ -1,7 +1,8 @@
 name: Manual workflow
 
 on:
-  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-manual]
     inputs:
       name:
         description: 'Name'
@@ -14,4 +15,4 @@ jobs:
 
     steps:
      - name: Greetings
-       run: echo "Hello ${{ inputs.name }}"
+       run: echo "Hello ${{ github.event.client_payload.name }}"
