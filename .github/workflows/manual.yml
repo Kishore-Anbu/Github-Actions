@@ -2,9 +2,14 @@ name: Manual workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name'
+        type: string
+        default: 'test'
 
 jobs:
-  demo: 
+  manual: 
     runs-on: windows-latest
 
     steps:
