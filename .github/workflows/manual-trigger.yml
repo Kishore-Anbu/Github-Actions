@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Say Hello
-        run: echo "HELLO ${{ github.event.inputs.username }}"
+        run: echo "HELLO ${{ github.event.client_payload.username }}"
