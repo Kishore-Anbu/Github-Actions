@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/test-vsbuild-workflow.yml
     with:
       runsOn: "self-hosted" #"windows-latest"
-      solution: "*/*.sln"
+      solution: "*.sln"
       vsVersion: "latest"
       msbuildArgs: "/p:Optimize=true"
       platform: "Any CPU"
@@ -35,7 +35,7 @@ jobs:
       - name: Run Composite Action for Build
         uses: ./.github/actions/vsbuild-composite-action
         with:
-          solution: "*/*.sln"
+          solution: "*.sln"
           configuration: "Release"
           platform: "Any CPU"
           msbuildArgs: "/p:Optimize=true"
