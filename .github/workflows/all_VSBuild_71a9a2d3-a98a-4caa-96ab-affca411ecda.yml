@@ -7,25 +7,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  VSbuild-Template:
-    uses: ./.github/workflows/test-vsbuild-workflow.yml
-    with:
-      runsOn: "self-hosted" #"windows-latest"
-      solution: "*.sln"
-      vsVersion: "latest"
-      msbuildArgs: "/p:Optimize=true"
-      platform: "Any CPU"
-      configuration: "Release"
-      clean: true
-      maximumCpuCount: true
-      restoreNugetPackages: true
-      msbuildArchitecture: "x86"
-      logProjectEvents: true
-      createLogFile: true
-      logFileVerbosity: "normal"
-      enableDefaultLogger: true
-      customVersion: "1.0.0"
-
   build:
     runs-on: self-hosted
     steps:
@@ -35,7 +16,7 @@ jobs:
       - name: Run Composite Action for Build
         uses: ./.github/actions/vsbuild-composite-action
         with:
-          solution: "*.sln"
+          solution: "AspnetCoreMvcFull.sln"
           configuration: "Release"
           platform: "Any CPU"
           msbuildArgs: "/p:Optimize=true"
