@@ -9,3 +9,4 @@ runs:
   steps:
     - name: Print Greeting
       run: echo "Hello ${{ inputs.name }}"
+      shell: pwsh
