@@ -28,11 +28,11 @@ runs:
       if: ${{ inputs.restoreNugetPackages == 'true' }}
       run: |
         echo "Restoring NuGet packages..."
-        nuget restore ${{ inputs.solution }}
+        nuget restore "${{ inputs.solution }}"
       shell: powershell
 
     - name: Build Solution
       run: |
         echo "Building solution..."
-        msbuild ${{ inputs.solution }} /p:Configuration=${{ inputs.configuration }} /p:Platform=${{ inputs.platform }} ${{ inputs.msbuildArgs }}
+        msbuild "${{ inputs.solution }}" /p:Configuration=${{ inputs.configuration }} /p:Platform="${{ inputs.platform }}" ${{ inputs.msbuildArgs }}
       shell: powershell
