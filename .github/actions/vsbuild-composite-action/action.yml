@@ -1,0 +1,36 @@
+name: "VSBuild Composite Action"
+description: "Reusable action for restoring NuGet packages and building .NET solutions using MSBuild"
+inputs:
+  solution:
+    description: "Path to the solution file"
+    required: true
+  configuration:
+    description: "Build configuration (e.g., Release or Debug)"
+    required: true
+    default: "Release"
+  platform:
+    description: "Target platform (e.g., Any CPU)"
+    required: true
+    default: "Any CPU"
+  msbuildArgs:
+    description: "Additional MSBuild arguments"
+    required: false
+    default: "/p:Optimize=true"
+  restoreNugetPackages:
+    description: "Restore NuGet packages before building"
+    required: true
+    default: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Restore NuGet Packages
+      if: ${{ inputs.restoreNugetPackages == 'true' }}
+      run: |
+        echo "Restoring NuGet packages..."
+        nuget restore ${{ inputs.solution }}
+
+    - name: Build Solution
+      run: |
+        echo "Building solution..."
+        msbuild ${{ inputs.solution }} /p:Configuration=${{ inputs.configuration }} /p:Platform=${{ inputs.platform }} ${{ inputs.msbuildArgs }}
