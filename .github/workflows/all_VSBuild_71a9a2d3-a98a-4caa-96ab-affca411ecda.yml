@@ -9,8 +9,6 @@ on:
 jobs:
   VSbuild-Template:
     uses: ./.github/workflows/test-vsbuild-workflow.yml
-    #uses: ./.github/workflows/template_VSBuild-VSTEST_71a9a2d3-a98a-4caa-96ab-affca411ecda.yml
-
     with:
       runsOn: "self-hosted" #"windows-latest"
       solution: "*/*.sln"
@@ -27,3 +25,18 @@ jobs:
       logFileVerbosity: "normal"
       enableDefaultLogger: true
       customVersion: "1.0.0"
+
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Composite Action for Build
+        uses: ./.github/actions/vsbuild-composite-action
+        with:
+          solution: "*/*.sln"
+          configuration: "Release"
+          platform: "Any CPU"
+          msbuildArgs: "/p:Optimize=true"
+          restoreNugetPackages: true
