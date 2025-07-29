@@ -3,13 +3,13 @@ description: 'Handles NuGet commands, installation, and restore in a single acti
 inputs:
   taskType:
     description: 'Type of NuGet task to run (command, installer, restore)'
-    required: true
+    required: false
   command:
     description: 'NuGet command (required for NuGet@0)'
     required: false
   solution:
     description: 'Path to solution or packages.config'
-    required: false
+    required: true
     default: '**/*.sln'
   restoreMode:
     description: 'Restore or install mode (required for NuGetInstaller@0)'
