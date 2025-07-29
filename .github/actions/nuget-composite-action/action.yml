@@ -38,6 +38,7 @@ runs:
       if: ${{ inputs.taskType == 'command' && inputs.command }}
       run: |
         nuget ${{ inputs.command }} ${{ inputs.arguments }}
+      shell: pwsh
 
     - name: Run NuGet Installer (NuGetInstaller@0)
       if: ${{ inputs.taskType == 'installer' }}
@@ -46,6 +47,7 @@ runs:
           --config-file ${{ inputs.nugetConfigPath }} 
           --verbosity ${{ inputs.verbosity }}
           --version ${{ inputs.nuGetVersion }}
+      shell: pwsh
 
     - name: Run NuGet Restore (NuGetRestore@1)
       if: ${{ inputs.taskType == 'restore' }}
@@ -54,3 +56,4 @@ runs:
           --config-file ${{ inputs.nugetConfigPath }} 
           --verbosity ${{ inputs.verbosity }}
           --select-or-config ${{ inputs.selectOrConfig }}
+      shell: pwsh
